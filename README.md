@@ -16,7 +16,8 @@ The long-awaited sequel to Goldfish Brain; the world's first time-tracking appli
 - Database: Postgres
 
 ## OK, but why? 
-Most people I know can recall at least one instance of getting up and walking into a different room, only to immediately forget what they came for. I identify with this experience. I get distracted pretty easily, and I forget things all the time. When it would happen, I'd often wish I had a personal heads-up display with my current objectives; like in a video game. This is essentially what I'm trying to make, with a few extra bells and whistles. I like the idea of being able to see trends in the way I spend my time, and in how much time I think it will take to accomplish things. I especially like the idea of tracking estimate accuracy over time. 
+Most people I know can recall at least one instance of getting up and walking into a different room, only to immediately forget what they came for. I identify with this experience. I get distracted pretty easily, and I forget things all the time. When it happens, I often catch myself wishing I had a personal heads-up display with my current objectives; like in a video game. This is essentially what I'm trying to make. There are a few extra bells and whistles, though - I like the idea of being able to see trends in the way I spend my time, and in how much time I think it will take to accomplish things. I especially like the idea of tracking estimate accuracy over time. Like, are you getting better or worse at predicting how long stuff takes? That seems like an important question. 
+My hope is that habitual use of this application will improve my time management and organization skills. Maybe it'll help yours too. 
 
 ## Just use a spreadsheet, you dork. 
 But where's the fun in that?!
