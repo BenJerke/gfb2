@@ -19,9 +19,7 @@ CREATE TABLE users (
 
 CREATE TABLE tasks (
   task_id SERIAL,
-  user_id int NOT NULL,
   task_description varchar(120) NOT NULL,
-  task_notes varchar(2000),
   task_created TIMESTAMP NOT NULL,
   task_initiated TIMESTAMP,
   task_terminated TIMESTAMP,
@@ -36,10 +34,8 @@ CREATE TABLE status (
   status_name varchar(20)
 );
 
-
-
 CREATE TABLE sessions (
-	session_id serial,
+  session_id serial,
   user_id int NOT NULL,
   session_notes varchar(2000),
   session_started TIMESTAMP NOT NULL,

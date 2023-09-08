@@ -94,7 +94,7 @@ The authentication controller uses the `JdbcUserDao` to read and write data from
 
 ### DAO integration tests
 
-`com.techelevator.dao.BaseDaoTests` has been provided for you to use as a base class for any DAO integration test. It initializes a Datasource for testing and manages rollback of database changes between tests.
+`dao.dev.ben.BaseDaoTests` has been provided for you to use as a base class for any DAO integration test. It initializes a Datasource for testing and manages rollback of database changes between tests.
 
 `com.techelevator.dao.JdbUserDaoTests` has been provided for you as an example for writing your own DAO integration tests.
 
