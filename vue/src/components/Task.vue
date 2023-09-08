@@ -80,9 +80,8 @@ export default {
             if(this.actualDuration){
                 // Gonna have to parse this, but that's a problem for later.  
                 // Tests would be nice to have... ugh. 
-                this.totalActiveDuration = Date.parse(this.actualDuration);
+                this.totalActiveDuration = parseInt(this.actualDuration);
             }
-            
             if(this.estimatedDuration){
 
             }
