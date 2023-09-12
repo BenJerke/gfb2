@@ -10,14 +10,14 @@ public class Session {
     private int id;
     private int userId;
     private String notes;
-    private LocalDateTime startTimestamp;
-    private LocalDateTime endTimestamp;
+    private long startTimestamp;
+    private long endTimestamp;
 
     public Session (){
 
     };
 
-    public Session(int id, int userId, String notes, LocalDateTime startTimestamp, LocalDateTime endTimestamp) {
+    public Session(int id, int userId, String notes, long startTimestamp, long endTimestamp) {
         this.id = id;
         this.userId = userId;
         this.notes = notes;
@@ -50,24 +50,24 @@ public class Session {
         this.notes = notes;
     }
 
-    public LocalDateTime getStartTimestamp() {
+    public long getStartTimestamp() {
         return startTimestamp;
     }
 
-    public void setStartTimestamp(LocalDateTime startTimestamp) {
+    public void setStartTimestamp(long startTimestamp) {
         this.startTimestamp = startTimestamp;
     }
 
-    public LocalDateTime getEndTimestamp() {
+    public long getEndTimestamp() {
         return endTimestamp;
     }
 
-    public void setEndTimestamp(LocalDateTime endTimestamp) {
+    public void setEndTimestamp(long endTimestamp) {
         this.endTimestamp = endTimestamp;
     }
 
-    public Duration getSessionDuration(){
-        return Duration.between(this.endTimestamp, this.startTimestamp);
+    public long getSessionDuration(){
+        return this.endTimestamp - this.startTimestamp;
     }
 
 }

@@ -20,8 +20,8 @@ CREATE TABLE users (
 CREATE TABLE tasks (
   task_id SERIAL,
   task_description varchar(120) NOT NULL,
-  task_estimated_duration int,
-  task_actual_duration int,
+  task_estimated_duration bigint,
+  task_actual_duration bigint,
   task_status_id int NOT NULL DEFAULT 0,
   CONSTRAINT PK_task PRIMARY KEY (task_id)
 );
@@ -35,9 +35,9 @@ CREATE TABLE sessions (
   session_id serial,
   user_id int NOT NULL,
   session_notes varchar(2000),
-  session_started TIMESTAMP NOT NULL,
-  session_ended TIMESTAMP,
-  session_duration INTERVAL,
+  session_started bigint NOT NULL,
+  session_ended bigint,
+  session_duration bigint,
   CONSTRAINT PK_session PRIMARY KEY (session_id)
 );
 
@@ -45,9 +45,9 @@ CREATE TABLE sessions (
 CREATE TABLE session_tasks (
   session_id int NOT NULL,
   task_id int NOT NULL,
-  task_start TIMESTAMP,
-  task_stop TIMESTAMP,
-  task_duration INTERVAL
+  task_start bigint,
+  task_stop bigint,
+  task_duration bigint
 );
 
 CREATE TABLE tags (
