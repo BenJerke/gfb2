@@ -20,17 +20,14 @@ CREATE TABLE users (
 CREATE TABLE tasks (
   task_id SERIAL,
   task_description varchar(120) NOT NULL,
-  task_created TIMESTAMP NOT NULL,
-  task_initiated TIMESTAMP,
-  task_terminated TIMESTAMP,
-  task_estimated_duration INTERVAL,
-  task_actual_duration INTERVAL,
+  task_estimated_duration int,
+  task_actual_duration int,
   task_status_id int NOT NULL DEFAULT 0,
   CONSTRAINT PK_task PRIMARY KEY (task_id)
 );
 
 CREATE TABLE status (
-  status_id int NOT NULL,
+  status_id smallint NOT NULL,
   status_name varchar(20)
 );
 

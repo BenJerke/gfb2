@@ -2,7 +2,7 @@ package dev.ben.controller;
 
 import javax.validation.Valid;
 
-import com.techelevator.model.*;
+import dev.ben.model.*;
 import dev.ben.dao.UserDao;
 import dev.ben.model.LoginDto;
 import dev.ben.model.LoginResponseDto;

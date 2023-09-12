@@ -12,31 +12,24 @@ public class Task {
     private int userId;
     private int projectId;
     private String description;
-    private LocalDateTime creationTimestamp;
-    private LocalDateTime initiationTimestamp;
-    private LocalDateTime terminationTimestamp;
-    private Duration estimatedDuration;
+    private long estimatedDuration;
     private String notes;
     private int statusId;
     private List<Tag> tags;
 
-    public Task(int id, int userId, String description, LocalDateTime creationTimestamp, LocalDateTime terminationTimestamp, Duration estimatedDuration, String notes, int statusId) {
+    public Task(int id, int userId, String description, long estimatedDuration, String notes, int statusId) {
         this.id = id;
         this.userId = userId;
         this.description = description;
-        this.creationTimestamp = creationTimestamp;
-        this.terminationTimestamp = terminationTimestamp;
         this.estimatedDuration = estimatedDuration;
         this.notes = notes;
         this.statusId = statusId;
     }
 
-    public Task(int id, int userId, String description, LocalDateTime creationTimestamp, Duration estimatedDuration, String notes, int statusId) {
+    public Task(int id, int userId, String description,  String notes, int statusId) {
         this.id = id;
         this.userId = userId;
         this.description = description;
-        this.creationTimestamp = creationTimestamp;
-        this.estimatedDuration = estimatedDuration;
         this.notes = notes;
         this.statusId = statusId;
     }

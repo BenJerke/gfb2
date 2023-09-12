@@ -83,7 +83,7 @@ export default {
                 this.totalActiveDuration = parseInt(this.actualDuration);
             }
             if(this.estimatedDuration){
-
+                console.log('load estimate duration')
             }
         }
     },

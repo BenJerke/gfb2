@@ -1,7 +1,7 @@
 <template>
   <div class="session-container">
     <section class="session-task-list">
-        
+        <TaskList :tasks="taskList" />
     </section>
     <section class="session-active-task">
         
@@ -13,7 +13,6 @@
 import TaskList from '@/components/TaskList.vue';
 
 export default {
-
     name: 'session-view',
     components: {
         TaskList,
@@ -21,13 +20,11 @@ export default {
     props: ['taskList', 'tagList'],
     data(){
         return {
-
         }
     },
     computed: {},
     methods: {},
     created(){
-        
     }
 
 }

@@ -23,7 +23,7 @@ public class TestingDatabaseConfig {
     private static final String DB_PORT =
             Objects.requireNonNullElse(System.getenv("DB_PORT"), "5432");
     private static final String DB_NAME =
-            Objects.requireNonNullElse(System.getenv("DB_NAME"), "final_capstone_test");
+            Objects.requireNonNullElse(System.getenv("DB_NAME"), "gfb_test");
     private static final String DB_USER =
             Objects.requireNonNullElse(System.getenv("DB_USER"), "postgres");
     private static final String DB_PASSWORD =

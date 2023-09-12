@@ -17,7 +17,7 @@ export default{
                 title: "Dummy Task 2",
                 description: "Dummy Task Description",
                 estimatedDuration: "2h 40m",
-                actualDuration: "1h 30m",                
+                actualDuration: "1h 30m",              
                 notes: "this is some test data."
             },
             {
@@ -27,8 +27,10 @@ export default{
                 estimatedDuration: "2h 40m",
                 actualDuration: "1h 30m",                
                 notes: "this is some test data."
-            }
-        
+            }        
         ]
+    },
+    convertDurationStringsToMilliseconds(){   
+
     }
 }
