@@ -72,7 +72,7 @@ export default {
             this.timeDeactivated = Date.now();            
             this.totalActiveDuration += (this.timeDeactivated - this.timeActivated);
             this.timeActivated = null; 
-            this.timeDeactivated = null; 
+            this.timeDeactivated = null;
         },
         initializeTask(){
             // We might be pulling a task from the server, but we might also be creating a new one. 
@@ -83,7 +83,7 @@ export default {
                 this.totalActiveDuration = parseInt(this.actualDuration);
             }
             if(this.estimatedDuration){
-                console.log('load estimate duration')
+                console.log('load estimate duration');
             }
         }
     },

@@ -1,5 +1,6 @@
 package dev.ben.controller;
 
+import dev.ben.model.Session;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 

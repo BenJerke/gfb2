@@ -1,8 +1,5 @@
 package dev.ben.model;
 import org.springframework.stereotype.Component;
-
-import java.time.Duration;
-import java.time.LocalDateTime;
 //
 
 @Component
@@ -10,8 +7,8 @@ public class Session {
     private int id;
     private int userId;
     private String notes;
-    private long startTimestamp;
-    private long endTimestamp;
+    private long startTimeMilliseconds;
+    private long endTimeMilliseconds;
 
     public Session (){
 
@@ -21,8 +18,8 @@ public class Session {
         this.id = id;
         this.userId = userId;
         this.notes = notes;
-        this.startTimestamp = startTimestamp;
-        this.endTimestamp = endTimestamp;
+        this.startTimeMilliseconds = startTimestamp;
+        this.endTimeMilliseconds = endTimestamp;
     }
 
 
@@ -50,24 +47,24 @@ public class Session {
         this.notes = notes;
     }
 
-    public long getStartTimestamp() {
-        return startTimestamp;
+    public long getStartTimeMilliseconds() {
+        return startTimeMilliseconds;
     }
 
-    public void setStartTimestamp(long startTimestamp) {
-        this.startTimestamp = startTimestamp;
+    public void setStartTimeMilliseconds(long startTimeMilliseconds) {
+        this.startTimeMilliseconds = startTimeMilliseconds;
     }
 
-    public long getEndTimestamp() {
-        return endTimestamp;
+    public long getEndTimeMilliseconds() {
+        return endTimeMilliseconds;
     }
 
-    public void setEndTimestamp(long endTimestamp) {
-        this.endTimestamp = endTimestamp;
+    public void setEndTimeMilliseconds(long endTimeMilliseconds) {
+        this.endTimeMilliseconds = endTimeMilliseconds;
     }
 
     public long getSessionDuration(){
-        return this.endTimestamp - this.startTimestamp;
+        return this.endTimeMilliseconds - this.startTimeMilliseconds;
     }
 
 }

@@ -12,7 +12,7 @@ public class Task {
     private int userId;
     private int projectId;
     private String description;
-    private long estimatedDuration;
+    private long estimatedDurationMilliseconds;
     private String notes;
     private int statusId;
     private List<Tag> tags;
@@ -21,7 +21,7 @@ public class Task {
         this.id = id;
         this.userId = userId;
         this.description = description;
-        this.estimatedDuration = estimatedDuration;
+        this.estimatedDurationMilliseconds = estimatedDuration;
         this.notes = notes;
         this.statusId = statusId;
     }
@@ -59,6 +59,9 @@ public class Task {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+    public void setEstimatedDurationMilliseconds(long estimatedDurationMilliseconds) {
+        this.estimatedDurationMilliseconds = estimatedDurationMilliseconds;
+    }
 
     public String getDescription() {
         return description;
@@ -66,30 +69,6 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public LocalDateTime getCreationTimestamp() {
-        return creationTimestamp;
-    }
-
-    public void setCreationTimestamp(LocalDateTime creationTimestamp) {
-        this.creationTimestamp = creationTimestamp;
-    }
-
-    public LocalDateTime getTerminationTimestamp() {
-        return terminationTimestamp;
-    }
-
-    public void setTerminationTimestamp(LocalDateTime terminationTimestamp) {
-        this.terminationTimestamp = terminationTimestamp;
-    }
-
-    public Duration getEstimatedDuration() {
-        return estimatedDuration;
-    }
-
-    public void setEstimatedDuration(Duration estimatedDuration) {
-        this.estimatedDuration = estimatedDuration;
     }
 
     public String getNotes() {
@@ -107,18 +86,6 @@ public class Task {
     public void setStatusId(int statusId) {
         this.statusId = statusId;
     }
-
-    public LocalDateTime getInitiationTimestamp() {
-        return initiationTimestamp;
-    }
-
-    public void setInitiationTimestamp(LocalDateTime initiationTimestamp) {
-        this.initiationTimestamp = initiationTimestamp;
-    }
-    public Duration getActualDuration(){
-        return Duration.between(this.terminationTimestamp, this.initiationTimestamp);
-    }
-
     public int getProjectId() {
         return projectId;
     }
