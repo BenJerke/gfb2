@@ -83,7 +83,7 @@ export default {
             this.active = setInterval(this.updateDurationString, 10)            
         },
         updateDurationString(){
-            this.durationString = timeFuncs.convertMillisecondsToDurationString(Date.now() - this.timeActivated);
+            this.durationString = timeFuncs.convertMillisecondsToDurationString(Date.now() - this.timeActivated + this.totalActiveDuration);
         },
         deactivateTask(){
             // when we stop working on a task for any reason, three things need to happen: 
@@ -98,7 +98,6 @@ export default {
         },
         pauseOrResumeTask(){
             if(this.status == STATUS_PAUSED || this.status == undefined){
-                console.log('unpausing')
                 this.activateTask();
             } else {
                 this.deactivateTask();
