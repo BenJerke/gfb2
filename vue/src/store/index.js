@@ -1,6 +1,6 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import axios from 'axios'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import axios from 'axios';
 
 Vue.use(Vuex)
 
@@ -11,6 +11,9 @@ Vue.use(Vuex)
  */
 const currentToken = localStorage.getItem('token')
 const currentUser = JSON.parse(localStorage.getItem('user'));
+// on boot, grab all the user's tasks. 
+
+
 
 if(currentToken != null) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${currentToken}`;
@@ -19,7 +22,8 @@ if(currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    sessionTasks: [],
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -37,6 +41,12 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
-    }
+    },
+    SELECT_SESSION_TASKS(state, selectedSessionTasks){
+      state.sessionTasks = selectedSessionTasks; 
+    }, 
+  },
+  getters:{
+    
   }
 })

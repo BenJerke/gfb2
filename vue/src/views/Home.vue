@@ -2,7 +2,15 @@
   <div class="home">
     <h1>Home</h1>
     <p>You must be authenticated to see this</p>
-    <TaskList :tasks="taskList" />
+    <button @click="selectSessionTasks()"> Start Working </button>
+    <TaskList 
+      :tasks="taskList" 
+      class="all-tasks"
+    />
+    <TaskList 
+      :tasks="selectedTasks" 
+      class="selected-task-list"
+    />
   </div>
 </template>
 
@@ -18,6 +26,8 @@ export default {
   data(){
     return {
       taskList: [],
+      selectedTasks: [],
+      userTags: [],
     }
   },
   computed: {},
@@ -35,7 +45,11 @@ export default {
         console.error(`Could not get task list: ${error}`)
       }
 
-    }
+    },
+    selectSessionTasks(){
+      this.$store.commit('SELECT_SESSION_TASKS', this.selectedTasks);
+      this.$router.push({name: 'session'});
+      }
   },
   created(){
     // this.taskList = this.getTasks(); 
@@ -45,3 +59,9 @@ export default {
 
 };
 </script>
+
+<style scoped>
+.all-tasks{
+  border: 1px solid black; 
+}
+</style>

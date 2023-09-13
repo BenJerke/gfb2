@@ -1,8 +1,8 @@
 <template>
     <section class="task-list-container">
-        <draggable :list="tasks" >
-        <Task 
-            v-for="task in tasks" :key="task.id" 
+        <draggable :list="tasks" group="task-group">
+        <div class="task-box" v-for="task in tasks" :key="task.id">
+        <Task              
             :listView="true"
             :title="task.title" 
             :description="task.description" 
@@ -10,6 +10,7 @@
             :estimatedDuration="task.estimatedDuration"
             :actualDuration="task.actualDuration"  
         />
+        </div>
         </draggable>
     </section>
 </template>
