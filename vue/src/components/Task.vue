@@ -13,7 +13,7 @@
             {{ notes }}
         </section>
         <section class="task-controls">
-            <button class="toggle-pause">
+            <button class="toggle-pause" @click="pauseOrResumeTask()">
                 Pause/Resume
             </button>
             <button class="complete-task">
@@ -25,15 +25,15 @@
         </section>
         <section class="task-time-display">
             <span class="estimated-duration">
-            Estimated Duration: {{ estimatedDuration }}
+            Estimated Duration: {{ estimatedDurationString }}
             </span>
             <br>
             <span class="actual-duration">
-            Actual Duration: {{ actualDuration }}
+            Actual Duration: {{ durationString }}
             </span>
-            <button class="hide">
+            <!-- <button class="hide">
             Show/Hide
-            </button>         
+            </button>          -->
         </section>
     </div>
 
@@ -50,7 +50,7 @@ const STATUS_PAUSED = 'Paused';
 const STATUS_COMPLETE = 'Complete';
 const STATUS_CANCELLED = 'Cancelled';
 const STATUS_IN_PROGRESS = 'In Progress';
-
+import timeFuncs from '@/services/TimeConverterService.js';
 
 export default {
     name: "task",
@@ -60,35 +60,45 @@ export default {
             // all of these are gonna be numbers of milliseconds. 
             timeActivated: null, 
             timeDeactivated: null,
-            totalActiveDuration: null,               
+            totalActiveDuration: null,
+            active: null,
+            durationString: "",                  
         }
     },
     computed: {
-        activeTaskDuration(){
-            let val = 0;
-            if(this.timeActivated){
-                val = Date.now() - this.timeActivated;
-            }            
-            return val;
-        }
+        // activeTaskDuration(){
+        //     let val = 0;
+        //     let output = "";
+        //     if(this.timeActivated){
+        //         val = Date.now() - this.timeActivated;
+        //         output += timeFuncs.convertMillisecondsToDurationString(val);
+        //     }
+        //     return output;
+        // }
     },
     methods: {
         activateTask(){            
-            this.timeActivated = Date.now();
+            this.timeActivated = Date.now();            
             this.status = STATUS_IN_PROGRESS;
+            this.active = setInterval(this.updateDurationString, 10)            
+        },
+        updateDurationString(){
+            this.durationString = timeFuncs.convertMillisecondsToDurationString(Date.now() - this.timeActivated);
         },
         deactivateTask(){
             // when we stop working on a task for any reason, three things need to happen: 
             // set the time when we deactivated the task 
             // add the time we spent working on the task to the total active duration 
-            // clear timeActivated and timeDeactivated  
-            this.timeDeactivated = Date.now();            
+            // clear timeActivated and timeDeactivated
+            clearInterval(this.active); 
+            this.timeDeactivated = Date.now();       
             this.totalActiveDuration += (this.timeDeactivated - this.timeActivated);
             this.timeActivated = null; 
             this.timeDeactivated = null;
         },
         pauseOrResumeTask(){
-            if(this.status == STATUS_PAUSED){
+            if(this.status == STATUS_PAUSED || this.status == undefined){
+                console.log('unpausing')
                 this.activateTask();
             } else {
                 this.deactivateTask();
