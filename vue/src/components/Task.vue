@@ -16,9 +16,6 @@
             <button class="toggle-pause">
                 Pause/Resume
             </button>
-            <button class="skip">
-                Skip
-            </button>
             <button class="complete-task">
                 Complete
             </button>
@@ -49,20 +46,36 @@
 </template>
 
 <script>
+const STATUS_PAUSED = 'Paused';
+const STATUS_COMPLETE = 'Complete';
+const STATUS_CANCELLED = 'Cancelled';
+const STATUS_IN_PROGRESS = 'In Progress';
+
+
 export default {
     name: "task",
     props:['title', 'description', 'estimatedDuration', 'actualDuration', 'notes', 'listView'],
     data(){
         return {
+            // all of these are gonna be numbers of milliseconds. 
             timeActivated: null, 
             timeDeactivated: null,
             totalActiveDuration: null,               
         }
     },
-    computed: {},
+    computed: {
+        activeTaskDuration(){
+            let val = 0;
+            if(this.timeActivated){
+                val = Date.now() - this.timeActivated;
+            }            
+            return val;
+        }
+    },
     methods: {
         activateTask(){            
             this.timeActivated = Date.now();
+            this.status = STATUS_IN_PROGRESS;
         },
         deactivateTask(){
             // when we stop working on a task for any reason, three things need to happen: 
@@ -73,6 +86,22 @@ export default {
             this.totalActiveDuration += (this.timeDeactivated - this.timeActivated);
             this.timeActivated = null; 
             this.timeDeactivated = null;
+        },
+        pauseOrResumeTask(){
+            if(this.status == STATUS_PAUSED){
+                this.activateTask();
+            } else {
+                this.deactivateTask();
+                this.status = STATUS_PAUSED;
+            }
+        },
+        cancelTask(){
+            this.deactivateTask();
+            this.status = STATUS_CANCELLED;            
+        },
+        completeTask(){
+            this.deactivateTask();
+            this.status = STATUS_COMPLETE;
         },
         initializeTask(){
             // We might be pulling a task from the server, but we might also be creating a new one. 

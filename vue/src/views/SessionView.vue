@@ -2,16 +2,16 @@
   <div class="session-container">
     <!--       
       Get a list of tasks defined in the home view. 
-    -->
-      <TaskList :tasks="taskList" class="session-task-list"/>     
+    -->           
       <Task class="session-active-task" 
-      :list-view="false" 
+      :list-view="false"
       :title="taskList[0].title"
       :description="taskList[0].description"
       :estimatedDuration="taskList[0].estimatedDuration"
       :actualDuration="taskList[0].actualDuration"
       :notes="taskList[0].notes"
       /> 
+      <TaskList :tasks="taskList" class="session-task-list"/>
   </div>
 </template>
 
