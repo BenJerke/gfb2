@@ -8,6 +8,10 @@ DROP TABLE IF EXISTS session_tasks;
 DROP TABLE IF EXISTS tags;
 DROP TABLE IF EXISTS task_tags;
 
+CREATE TABLE status (
+   status_id smallint NOT NULL,
+   status_name varchar(20)
+ );
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -26,10 +30,6 @@ CREATE TABLE tasks (
   CONSTRAINT PK_task PRIMARY KEY (task_id)
 );
 
-CREATE TABLE status (
-  status_id smallint NOT NULL,
-  status_name varchar(20)
-);
 
 CREATE TABLE sessions (
   session_id serial,
@@ -41,6 +41,22 @@ CREATE TABLE sessions (
   CONSTRAINT PK_session PRIMARY KEY (session_id)
 );
 
+CREATE TABLE tags (
+  tag_id serial,
+  user_id int NOT NULL,
+  tag_name varchar(50),
+  CONSTRAINT PK_tag PRIMARY KEY (tag_id)
+);
+
+CREATE TABLE user_tasks (
+    user_id int NOT NULL,
+    task_id int NOT NULL
+);
+
+CREATE TABLE user_tags (
+    user_id int NOT NULL,
+    tag_id int NOT NULL
+);
 
 CREATE TABLE session_tasks (
   session_id int NOT NULL,
@@ -50,12 +66,6 @@ CREATE TABLE session_tasks (
   task_duration bigint
 );
 
-CREATE TABLE tags (
-  tag_id serial,
-  user_id int NOT NULL,
-  tag_name varchar(50),
-  CONSTRAINT PK_tag PRIMARY KEY (tag_id)
-);
 
 CREATE TABLE task_tags (
   task_id int NOT NULL,

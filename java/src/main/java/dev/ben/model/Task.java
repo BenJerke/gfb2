@@ -10,11 +10,25 @@ import java.util.List;
 public class Task {
     private int id;
     private int userId;
-    private int projectId;
     private String description;
     private long estimatedDurationMilliseconds;
     private String notes;
     private int statusId;
+
+    private long actualDurationMilliseconds;
+
+    public long getEstimatedDurationMilliseconds() {
+        return estimatedDurationMilliseconds;
+    }
+
+    public long getActualDurationMilliseconds() {
+        return actualDurationMilliseconds;
+    }
+
+    public void setActualDurationMilliseconds(long actualDurationMilliseconds) {
+        this.actualDurationMilliseconds = actualDurationMilliseconds;
+    }
+
     private List<Tag> tags;
 
     public Task(int id, int userId, String description, long estimatedDuration, String notes, int statusId) {
@@ -85,13 +99,6 @@ public class Task {
 
     public void setStatusId(int statusId) {
         this.statusId = statusId;
-    }
-    public int getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(int projectId) {
-        this.projectId = projectId;
     }
 
     public List<Tag> getTags() {
