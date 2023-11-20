@@ -7,11 +7,16 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RequestMapping("/task")
 public class TaskProjectController {
-    // create tasks and projects
-    // update tasks and projects
-    // delete tasks and projects
+    // task & project record CRUD
+    //
+    //
     @PostMapping("/new")
     public Task createTask(@RequestBody Task newTask){
+        /*
+        get a number of milliseconds
+
+         */
+
         return null;
     }
 

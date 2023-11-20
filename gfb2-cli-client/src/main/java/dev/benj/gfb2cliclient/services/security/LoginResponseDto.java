@@ -1,17 +1,21 @@
-package dev.ben.model;
+package dev.benj.gfb2cliclient.services.security;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dev.benj.gfb2cliclient.services.security.User;
+import org.springframework.boot.jackson.JsonComponent;
+
+
 public class LoginResponseDto {
 
     private String token;
     private User user;
-
     public LoginResponseDto(String token, User user) {
         this.token = token;
         this.user = user;
     }
 
-    @JsonProperty("token")
+//    @JsonProperty("token")
     String getToken() {
         return token;
     }
@@ -20,7 +24,7 @@ public class LoginResponseDto {
         this.token = token;
     }
 
-    @JsonProperty("user")
+//    @JsonProperty("user")
     public User getUser() {
         return user;
     }
