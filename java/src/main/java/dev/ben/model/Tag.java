@@ -5,12 +5,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class Tag {
     private int id;
-    private int user_id;
+    private int userId;
     private String description;
 
-    public Tag(int id, int user_id, String description) {
+    public Tag(int id, int userId, String description) {
         this.id = id;
-        this.user_id = user_id;
+        this.userId = userId;
         this.description = description;
     }
 
@@ -26,12 +26,12 @@ public class Tag {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getDescription() {
