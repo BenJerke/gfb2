@@ -13,6 +13,10 @@ public class Tag {
         this.userId = userId;
         this.description = description;
     }
+    public Tag(int userId, String description) {
+        this.userId = userId;
+        this.description = description;
+    }
 
     public Tag(){
 

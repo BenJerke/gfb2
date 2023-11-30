@@ -18,7 +18,13 @@ INSERT INTO tasks (task_description, task_owner, task_estimated_duration) VALUES
 INSERT INTO tasks (task_description, task_owner, task_estimated_duration) VALUES ('User 1s Project Task', 1, 3600);
 INSERT INTO tasks (task_description, task_owner, task_estimated_duration) VALUES ('User 1s Administrative Project Task', 1, 3600);
 INSERT INTO tasks (task_description, task_owner, task_estimated_duration) VALUES ('User 2s Chore', 2, 1400);
-INSERT INTO tasks (task_description, task_owner, task_estimated_duration, task_actual_duration, task_status_id) VALUES ('User 1s Completed Task', 2, 3600, 3600, 3);
+INSERT INTO tasks (task_description, task_owner, task_estimated_duration, task_actual_duration, task_status_id) VALUES ('User 2s Completed Task', 2, 3600, 3600, 3);
+
+INSERT INTO user_tasks(user_id, task_id) VALUES (1, 1);
+INSERT INTO user_tasks(user_id, task_id) VALUES (1, 2);
+INSERT INTO user_tasks(user_id, task_id) VALUES (1, 3);
+INSERT INTO user_tasks(user_id, task_id) VALUES (2, 4);
+INSERT INTO user_tasks(user_id, task_id) VALUES (2, 5);
 
 -- task_tags
 INSERT INTO task_tags (task_id, tag_id) VALUES (1, 1);

@@ -14,10 +14,10 @@ public class Task {
     private List<Integer> allowedUserIds = new ArrayList<>();
     private String description;
     private Long estimatedDuration = 0L;
-    private List<String> notes;
+    private List<String> notes = new ArrayList<>();
     private int statusId = 0;
     private Long actualDuration = 0L;
-    private List<Tag> tags;
+    private List<Tag> tags = new ArrayList<>();
 
     /*
     - The only requirements for a task should be user ID and title. Everything else should be optional.

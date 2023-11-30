@@ -68,7 +68,8 @@ public class TaskController {
     @GetMapping(value = "")
     public List<Task> getUserTasks(Principal principal){
         List<Task> foundTasks = null;
-        foundTasks = taskDao.listUserTasks(principal.getName());
+        User loggedInUser = userDao.findByUsername(principal.getName());
+        foundTasks = taskDao.listUserTasks(loggedInUser);
         if(foundTasks == null){
             throw new RuntimeException("Tasks not found.");
         }
@@ -89,5 +90,6 @@ public class TaskController {
         }
         return false;
     }
+
 
 }
