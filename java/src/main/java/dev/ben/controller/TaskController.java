@@ -3,6 +3,7 @@ package dev.ben.controller;
 import dev.ben.dao.JdbcTaskDao;
 import dev.ben.dao.TaskDao;
 import dev.ben.dao.UserDao;
+import dev.ben.model.Tag;
 import dev.ben.model.Task;
 import dev.ben.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,36 @@ public class TaskController {
 
     private TaskDao taskDao;
     private UserDao userDao;
+    private TagController tagController;
 
 
-    public TaskController(JdbcTaskDao taskDao, UserDao userDao){
+    public TaskController(JdbcTaskDao taskDao, UserDao userDao, TagController tagController){
         this.taskDao = taskDao;
         this.userDao = userDao;
+        this.tagController = tagController;
+    }
+
+    @PutMapping(value = "/{id}")
+    public Task updateTask(@RequestBody Task task, @PathVariable int taskId, Principal principal){
+        if (task.getId() != taskId || !principalIsTaskOwner(task, principal)){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unable to update task.");
+        }
+
+        // see if we need to create new tags
+        // TODO: calling updateTask from the DAO should attach any newly created tags. test this.
+
+        try{
+            for(Tag tag :  task.getTags()){
+                if(tag.getId() == 0){
+                    tagController.createTag(tag, principal);
+                }
+            }
+            return taskDao.updateTask(task);
+        } catch (RuntimeException e){
+            System.out.print(e.getMessage());
+            e.printStackTrace();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unable to update task.");
+        }
     }
 
 

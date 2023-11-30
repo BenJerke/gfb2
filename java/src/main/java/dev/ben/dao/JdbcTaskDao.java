@@ -118,6 +118,7 @@ public class JdbcTaskDao implements TaskDao {
         // the session will update the task with the actual duration, status, new tags, new users; whatever happened while working.
         // Add/remove tags from the task
         // Add/remove users from the task
+        // Add/remove notes from the task
         // Update the task owner
         // Update the task description
         // Update the task estimated duration
@@ -238,7 +239,7 @@ public class JdbcTaskDao implements TaskDao {
         }
         return deletedRows;
     }
-    
+
     @Transactional
     public List<Tag> getTagsByTaskId(int taskId){
         String sql = "SELECT tag_id, tag_name, user_id FROM tags WHERE tag_id IN (SELECT tag_id FROM task_tags WHERE task_id = ?);";
