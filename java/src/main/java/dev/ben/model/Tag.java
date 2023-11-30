@@ -18,6 +18,10 @@ public class Tag {
         this.description = description;
     }
 
+    public Tag(String description) {
+        this.description = description;
+    }
+
     public Tag(){
 
     }

@@ -19,6 +19,7 @@ public class Task {
     private Long actualDuration = 0L;
     private List<Tag> tags = new ArrayList<>();
 
+
     /*
     - The only requirements for a task should be user ID and title. Everything else should be optional.
 
@@ -172,7 +173,7 @@ public class Task {
     }
     public void removeAllowedUser(int userId){
         if(this.allowedUserIds.contains(userId)){
-            this.allowedUserIds.remove(userId);
+            this.allowedUserIds.remove(allowedUserIds.indexOf(userId));
         } else {
             throw new ValidationException("User not present.");
         }
@@ -189,9 +190,9 @@ public class Task {
         this.notes.add(note);
     }
 
-    public void deleteTag(Tag tag){
+    public void removeTag(Tag tag){
         if(this.tags.contains(tag)){
-            this.tags.remove(tag);
+            this.tags.remove(tags.indexOf(tag));
         } else {
             throw new ValidationException("Tag not present.");
         }

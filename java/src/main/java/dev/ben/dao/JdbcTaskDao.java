@@ -126,11 +126,8 @@ public class JdbcTaskDao implements TaskDao {
         String sql = "UPDATE tasks SET task_owner = ?, task_description = ?, task_estimated_duration = ?, task_actual_duration = ?, task_status_id = ? WHERE task_id = ?";
 
         removeAllowedUsersFromTask(task);
-        if(task.getTags() != null) {
-            removeTagsFromTask(task);
-            addTagsToTask(task);
-        }
-
+        removeTagsFromTask(task);
+        addTagsToTask(task);
         addAllowedUsers(task);
 
         int taskUpdateCount = jdbcTemplate.update(sql, task.getOwningUserId(), task.getDescription(), task.getEstimatedDuration(), task.getActualDuration(), task.getStatusId(), task.getId());
@@ -142,23 +139,19 @@ public class JdbcTaskDao implements TaskDao {
         return task;
     }
 
+    @Transactional
     public void removeTagsFromTask(Task task){
         String sql = "DELETE FROM task_tags WHERE task_id = ?;";
-        int deletedRows = 0;
-        if(task.getTags() == null || task.getTags().size() == 0){
-            return;
-        }
-        for(Tag tag : task.getTags()){
-            deletedRows += jdbcTemplate.update(sql, task.getId());
-        }
-        if (deletedRows == 0){
-            throw new RuntimeException("Tag removal failed.");
+        // this will get rid of every task-tag entry for the given task.
+        try {jdbcTemplate.update(sql, task.getId());
+        } catch (RuntimeException e){
+            throw e;
         }
     }
 
+
     public void addTagsToTask(Task task) {
         // When we create a tag, check to see if there are any tags.
-
         if(task.getTags() == null || task.getTags().size() == 0){
             return;
         }
@@ -175,13 +168,11 @@ public class JdbcTaskDao implements TaskDao {
     }
 
     public void removeAllowedUsersFromTask(Task task){
-
         int deletedRows = 0;
         if(task.getAllowedUserIds().size() == 1){
             return;
         }
         String sql = "DELETE FROM user_tasks WHERE task_id = ?;";
-
         deletedRows = jdbcTemplate.update(sql, task.getId());
         if (deletedRows == 0){
             throw new RuntimeException("User removal failed.");
@@ -238,13 +229,16 @@ public class JdbcTaskDao implements TaskDao {
 
     @Override
     public int deleteTask(Task task) {
-        return 0;
+        removeAllowedUsersFromTask(task);
+        removeTagsFromTask(task);
+        String sql = "DELETE FROM tasks WHERE task_id = ?;";
+        int deletedRows = jdbcTemplate.update(sql, task.getId());
+        if(deletedRows == 0){
+            throw new RuntimeException("Task deletion failed.");
+        }
+        return deletedRows;
     }
-
-//    private Task mapRowToTask(SqlRowSet rs){
-//        Task newTask = null;
-//
-//    }
+    
     @Transactional
     public List<Tag> getTagsByTaskId(int taskId){
         String sql = "SELECT tag_id, tag_name, user_id FROM tags WHERE tag_id IN (SELECT tag_id FROM task_tags WHERE task_id = ?);";
