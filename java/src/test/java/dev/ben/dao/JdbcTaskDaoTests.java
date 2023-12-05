@@ -13,8 +13,8 @@ import java.util.List;
 
 
 public class JdbcTaskDaoTests extends BaseDaoTests{
-    private JdbcTaskDao sut;
-    private JdbcUserDao userDao;
+    private TaskDao sut;
+    private UserDao userDao;
     @Before
     public void setup(){
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -44,6 +44,11 @@ public class JdbcTaskDaoTests extends BaseDaoTests{
     }
     @Test
     public void createTag(){
+        Tag tag = new Tag(1, "test tag");
+        Tag createdTag = sut.createTag(tag);
+        Assert.assertNotNull("Created tag was null.", createdTag);
+        Assert.assertEquals("Tag IDs don't match.", tag.getId(), createdTag.getId());
+        Assert.assertEquals("Tag descriptions don't match.", tag.getDescription(), createdTag.getDescription());
     }
 
     @Test
@@ -72,6 +77,7 @@ public class JdbcTaskDaoTests extends BaseDaoTests{
         createdTask.addTag(createdTag);
         // gotta actually put it in the database
         sut.addTagsToTask(createdTask);
+
 
         List<Tag> tags = sut.getTagsByTaskId(createdTask.getId());
 
@@ -183,5 +189,4 @@ public class JdbcTaskDaoTests extends BaseDaoTests{
         Assert.assertNotNull("Tags were null.", tags);
         Assert.assertEquals("Wrong number of tags returned.", 0, tags.size());
     }
-
 }

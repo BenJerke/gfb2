@@ -1,5 +1,7 @@
 package dev.ben.model;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 //
 
 @Component
@@ -9,10 +11,28 @@ public class Session {
     private String notes;
     private long startTimeMilliseconds;
     private long endTimeMilliseconds;
+    private List<WorkPeriod> workPeriods;
+
+    public List<WorkPeriod> getWorkPeriods() {
+        return workPeriods;
+    }
+
+    public void setWorkPeriods(List<WorkPeriod> workPeriods) {
+        this.workPeriods = workPeriods;
+    }
+
 
     public Session (){
 
     };
+
+    public Session(int id, int userId, String notes, long startTimestamp, List<WorkPeriod> workPeriods) {
+        this.id = id;
+        this.userId = userId;
+        this.notes = notes;
+        this.startTimeMilliseconds = startTimestamp;
+        this.workPeriods = workPeriods;
+    }
 
     public Session(int id, int userId, String notes, long startTimestamp, long endTimestamp) {
         this.id = id;

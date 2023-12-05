@@ -17,4 +17,10 @@ public interface TaskDao {
     int deleteTask(Task task);
 
     Tag createTag(Tag tag);
+
+    void addTagsToTask(Task createdTask);
+
+    List<Tag> getTagsByTaskId(int id);
+
+    List<Integer> getAllowedUserIds(int id);
 }

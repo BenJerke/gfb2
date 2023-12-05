@@ -62,7 +62,8 @@ CREATE TABLE session_tasks (
   session_id int NOT NULL REFERENCES sessions(session_id),
   task_id int NOT NULL REFERENCES tasks(task_id),
   task_start timestamp,
-  task_stop timestamp
+  task_stop timestamp,
+  status_id int REFERENCES status(status_id)
 );
 
 
